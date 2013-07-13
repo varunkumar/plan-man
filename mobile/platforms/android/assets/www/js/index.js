@@ -34,6 +34,25 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        
+        // Stepping up SMS receiver
+        var smsInboxPlugin = cordova.require('cordova/plugin/smsinboxplugin');
+        smsInboxPlugin.startReception (function(msg) {
+            alert(msg);
+          }, function(err) {
+            alert("Error while receiving messages: " + err);
+          });
+        
+        // Send SMS
+        $('#btnSend').on("click", function() {
+        	var smsSendingPlugin = cordova.require('cordova/plugin/smssendingplugin');
+            
+            smsSendingPlugin.send ("09490484193", "Hello World !", function() {
+                alert("Message sent :-)");
+              }, function() {
+                alert("Message not sent :s");
+              });
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

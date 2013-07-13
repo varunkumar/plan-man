@@ -66,6 +66,10 @@
         <param name="android-package" value="org.apache.cordova.InAppBrowser" />
     </feature>
     <plugins>
+        <plugin name="SmsInboxPlugin" value="org.apache.cordova.plugin.SmsInboxPlugin">
+            <param name="broadcast" value="true" />    
+        </plugin>
+        <plugin name="SmsSendingPlugin" value="org.apache.cordova.plugin.SmsSendingPlugin"/>
     </plugins>
     <access origin="*" />
     <preference name="useBrowserHistory" value="true" />
