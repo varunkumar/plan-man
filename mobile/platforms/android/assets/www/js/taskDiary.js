@@ -68,14 +68,14 @@ function saveTaskDetails(data, callback) {
 TaskDiary.prototype.processSMS = function(data) {
 	var messageText = data.message;
 	this.saveMessage({type:'INCOMING_SMS', counterParty:data.contactNumber, 
-		data.date:new Date().getTime(), data.data:message});
+		date:new Date().getTime(), data:message});
 	var taskId = messageText.substring(0, messageText.indexOf(' '));
 	var taskStatus = messageText.substring(messageText.indexOf(' ') + 1, messageText.length);
 	this.updateTaskStatusByTaskId({id:taskId, taskStatus:taskStatus});
 }
 
 TaskDiary.prototype.processMissedCall = function(data) {
-	this.saveMessage({type:'MISSED_CALL', counterParty:data.contactNumber, data.date:new Date().getTime()});
+	this.saveMessage({type:'MISSED_CALL', counterParty:data.contactNumber, date:new Date().getTime()});
 	findContactId(data.contactNumber, function(contactIds) {
 		for(var i=0; i < contactIds.length; i++) {
 			this.updateTaskStatusByContactId({id:contactId, taskStatus:'Accepted'});

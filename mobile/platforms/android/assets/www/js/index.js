@@ -89,24 +89,6 @@ var app = {
     	taskDiary = new TaskDiary();
     	taskDiary.setup(function() {});
     	
-        if (app.page == "contacts") {
-	        var options = new ContactFindOptions();
-	        options.filter="A"; 
-	        options.multiple=true;
-	        var fields = ["*"];
-	        var contactsStr = "";
-	        $('#contactsList').html("Getting the contacts list...");
-	        navigator.contacts.find(fields, function(contacts) {
-	        	$('#contactsList').html("Updating the contacts list...");
-	        	for (var i = 0; i < contacts.length; i++) {
-	        		var contactName = "<li><a href='#'>" + (contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value) + "</a></li>";
-	        		contactsStr += contactName;
-	        	}
-	        	$('#contactsList').html(contactsStr).listview('refresh');
-	        }, function(err) {
-	        	$('#contactsList').html("Error has occurred while fetching the contacts...");
-	        }, options);
-        
         var contacts = window.localStorage.getItem("contacts");
         if (contacts == null) {
         	app.buildContactList([], "Arun");
@@ -163,10 +145,33 @@ var app = {
 	    		var contactName = "<li><a href='#'>" + (contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value) + "</a></li>";
 	    		contactsStr += contactName;
     		} catch (e) {
-    			// do nothing
+    			// do nothing\
     		}
     	}
-    	$('#contactsList').html(contactsStr);//.listview('refresh');
+    	
+    	try {
+    		$('#contactsList').html(contactsStr).listview('refresh');
+    	} catch(e) {
+    		$('#contactsList').html(contactsStr);
+    	}
+    	
+    	try {
+    		$('#contactsList0').html(contactsStr).listview('refresh');
+    	} catch(e) {
+    		$('#contactsList0').html(contactsStr);
+    	}
+    	
+    	try {
+    		$('#contactsList1').html(contactsStr).listview('refresh');
+    	} catch(e) {
+    		$('#contactsList1').html(contactsStr);
+    	}
+    	
+    	try {
+    		$('#contactsList2').html(contactsStr).listview('refresh');
+    	} catch(e) {
+    		$('#contactsList2').html(contactsStr);
+    	}
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
