@@ -72,8 +72,13 @@ var app = {
         //Read tasks
         $('#getTasks').on("click", function() {
         	taskDiary.getTasks(function(data) {
+        		console.log(data);
     			alert("Number of tasks retrieved = " + data.length);
     		});
+        	taskDiary.getTasks(function(data) {
+        		console.log(data);
+    			alert("Task 1 = " + data);
+    		}, 1);
         });
 
     	//create a new instance of our TaskDiary and listen for it to complete it's setup
