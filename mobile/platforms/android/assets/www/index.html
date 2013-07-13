@@ -21,18 +21,12 @@
 	<div data-role="header" data-position="fixed">
 		<!-- <a href="#" data-icon="" data-corners="false">Edit</a> -->
     <h1>My Dashboard</h1>
+    <a href="#" id="btnRefresh" data-icon="refresh" class="ui-btn-left" data-corners="false">Refresh</a>
     <a href="#addtask" data-icon="plus" class="ui-btn-right" data-corners="false">Add</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<ul data-role="listview" data-inset="false"><!--  data-filter="true" -->
-    <li><a href="#taskdetails">
-    	<img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">
-        <h2>124568</h2>
-        <p><strong>Amit Bharti</strong></p>
-        <p>207 Aliens Blend Madhapur</p>
-        <p class="ui-li-aside"><strong>6:24</strong>PM</p>
-    </a></li>
+		<ul id="tasksList" data-role="listview" data-inset="false"><!--  data-filter="true" -->
     <li><a href="#taskdetails">
     	<img src="content/statusicons/awaitingacceptance.png" alt="France" class="ui-li-icon ui-corner-none">
         <h2>845748</h2>
@@ -698,31 +692,35 @@
     <div data-role="header" data-position="fixed">
     <a href="#index" data-icon="" data-corners="false">Cancel</a>
     <h1>Add task</h1>
-    <a href="#index" data-icon="check" data-corners="false">Save</a>
+    <a href="#index" data-icon="check" data-corners="false" id="addTask">Save</a>
     </div><!-- /header -->
 
     <div data-role="content">   
         <form>
             <ul data-role="listview">
                 <li data-role="fieldcontain">
-                    <label for="name2">Client Name:</label>
-                    <input type="text" name="name2" id="name2" value="" data-clear-btn="true">
+                    <label for="txtClient">Client Name:</label>
+                    <input type="text" name="txtClient" id="txtClient" value="Raghuram Duraiswamy" data-clear-btn="true">
                 </li>
                 <li data-role="fieldcontain">
-                    <label for="textarea2">Task Description:</label>
-                <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+                    <label for="txtSubject">Task Subject:</label>
+                    <input type="text" name="txtSubject" id="txtSubject" value="" data-clear-btn="true">
                 </li>
                 <li data-role="fieldcontain">
-                    <label for="name3">Assign to</label>
-                    <input type="text" name="name3" id="name3" value="" data-clear-btn="true">
+                    <label for="txtDesc">Task Description:</label>
+                <textarea cols="40" rows="8" name="txtDesc" id="txtDesc"></textarea>
                 </li>
                 <li data-role="fieldcontain">
-                    <label for="mydate">Appointment Time</label>
-                    <input name="mydate" id="mydate" type="time" data-role="datebox">
+                    <label for="txtSE">Assign to</label>
+                    <input type="text" name="txtSE" id="txtSE" value="Amit Bharati" data-clear-btn="true">
                 </li>
                 <li data-role="fieldcontain">
-                    <label for="select-choice-1" class="select">Location</label>
-                    <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>                    
+                    <label for="dtTask">Appointment Time</label>
+                    <input name="dtTask" id="dtTask" type="time" data-role="datebox" value="4:30 PM">
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="txtLocation" class="select">Location</label>
+                    <textarea cols="40" rows="8" name="txtLocation" id="txtLocation">Road No. 2, Banjara Hills, Hyderabad</textarea>                    
                 </li>
             </ul>
         </form>

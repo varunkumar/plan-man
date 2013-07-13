@@ -42,7 +42,7 @@ var app = {
         // Stepping up SMS receiver
         var smsInboxPlugin = cordova.require('cordova/plugin/smsinboxplugin');
         smsInboxPlugin.startReception (function(msg) {
-            taskDiary.processSMS(msg);
+        	taskDiary.processSMS({contactNumber: msg.substring(0, msg.indexOf('>')), message: msg.substring(msg.indexOf('>') + 1)});
           }, function(err) {
             alert("Error while receiving messages: " + err);
           });
@@ -68,27 +68,30 @@ var app = {
         
         //Add task
         $('#addTask').on("click", function() {
-        	taskDiary.saveTask({name:"Task1",desc:"Test Task",dueDate:new Date(),contacts:[100, 102],taskStatus:'Assigned'}, function() {
+        	taskDiary.saveTask({name:$('#txtSubject').val(),desc:$('#txtDesc').val(),dueDate:new Date(),location: $('#txtLocation').val(), contacts:[4104, 2848],taskStatus:'Assigned'}, function(task) {
+        		var smsSendingPlugin = cordova.require('cordova/plugin/smssendingplugin');
+                
+                smsSendingPlugin.send (app.findContactById(4104), "PM" + task.id + " " + task.name + " " + task.desc + " Client name: " + app.findContactById(2848) + " (" + task.location + ")", function() {
+                    //alert("Message sent :-)");
+                  }, function() {
+                    //alert("Message not sent :s");
+                  });
     			alert("Task added!!");
     		});
         });
-
+        
         //Read tasks
-        $('#getTasks').on("click", function() {
-        	taskDiary.getTasks(function(data) {
-        		console.log(data);
-    			alert("Number of tasks retrieved = " + data.length);
-    		});
-        	taskDiary.getTasks(function(data) {
-        		console.log(data);
-    			alert("Task 1 = " + data);
-    		}, 1);
+        $('#btnRefresh').on("click", function() {
+        	taskDiary.getTasks(app.loadTasks);
         });
 
     	//create a new instance of our TaskDiary and listen for it to complete it's setup
     	taskDiary = new TaskDiary();
     	taskDiary.setup(function() {});
     	
+    	taskDiary.getTasks(app.loadTasks);
+    	
+    	//window.localStorage.clear();
         var contacts = window.localStorage.getItem("contacts");
         if (contacts == null) {
         	app.buildContactList([], "Arun");
@@ -96,13 +99,58 @@ var app = {
         	app.renderContacts(JSON.parse(contacts));
         }
     },
+    loadTasks: function(data) {
+    	$('#tasksList').html("");
+    	var str = "";
+    	for (var i = 0; i < data.length; i++) {
+    		var task = "<li><a href='#taskdetails'>";
+    		task += '<img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">';
+    		task += '<h2>' + data[i].name + '</h2>';
+    		task += '<p><strong>' + app.findNameById(data[i].contacts[0]) + '</strong></p>';
+    		task += '<p>' + data[i].location + '</p>';
+    		task += '<p>' + data[i].currentStatus + '</p>';
+    		task += '<p class="ui-li-aside"><strong>' + new Date(data[i].dueDate).getHours() + ":" + new Date(data[i].dueDate).getMinutes() + '</strong> PM</p>';
+    		task += '</a></li>';
+    		
+    		str += task;
+    	} 
+    	$('#tasksList').append(str).listview('refresh').trigger('create');
+	},
+    findContactById: function(id) {
+    	var idMap = {
+    		"2848": "09959879187",
+    		"4104": "09963951917",
+    		"2406": "09449052884",
+    		"2405": "09490484193"
+    	};
+    	return idMap[id];
+        	
+    },
+    findNameById: function(id) {
+    	var idMap = {
+        		"2848": "Raghuram Duraiswamy",
+        		"4104": "Amit Bharti",
+        		"2406": "Arunkumar Nagarajan",
+        		"2405": "Varunkumar Nagarajan"
+        	};
+        	return idMap[id];
+    },
+    findContactByPhone: function(phone) {
+    	var phoneMap = {
+    		"09959879187": 2848,
+    		"09963951917": 4104,
+    		"09449052884": 2406,
+    		"09490484193": 2405
+    	};
+    	return phoneMap[phone];
+    },
     buildContactList: function(allContacts, name) {
     	if (name == "Arun")
     		window.localStorage.clear();
     	
     	var promise = 0;
     	
-    	var fields = ["*"];
+    	var fields = ["phoneNumbers", "displayName", "name", "id"];
     	var options = new ContactFindOptions();
         options.filter = name; 
         options.multiple = true;
@@ -111,8 +159,6 @@ var app = {
         		allContacts.push(contacts[i]);
         	}
         	if (name == "Arun")
-    			app.buildContactList(allContacts, "Varun");
-    		else if (name == "Varun")
     			app.buildContactList(allContacts, "Raghu");
     		else if (name == "Raghu")
     			app.buildContactList(allContacts, "Amit");
