@@ -81,10 +81,10 @@ TaskDiary.prototype.getTasks = function(callback, id) {
 	this.db.transaction(
 		function(t) {
 			var whereClause = ' where ';
-			if(arguments.length === 1) {
-				whereClause += '1 = 1 or 1 = ?' 
+			if(id == undefined) {
+				whereClause += '1 = 1 or 1 = ?';
 			} else {
-				whereClause += 't.id = ?'
+				whereClause += 't.id = ?';
 			}
 			t.executeSql('select t.id, t.name, t.description, t.dueDate, tc.contact_id, tl.status, tl.misc_info, tl.validity_start, tl.validity_end'
 					+ ' from task t '
