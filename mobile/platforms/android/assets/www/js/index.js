@@ -94,6 +94,32 @@ var app = {
     	
     	taskDiary.getTasks(app.loadTasks);
     	
+    	YUI().use('charts', function (Y) 
+    			{ 
+    			    // Create data 
+    			    var myDataValues = [
+    			            {day:"Monday", taxes:2000}, 
+    			            {day:"Tuesday", taxes:50}, 
+    			            {day:"Wednesday", taxes:4000}, 
+    			            {day:"Thursday", taxes:200}, 
+    			            {day:"Friday", taxes:2000}
+    			    ];				
+
+    			    var pieGraph = new Y.Chart({
+    			            render:"#mychart", 
+    			            categoryKey:"day", 
+    			            seriesKeys:["taxes"], 
+    			            dataProvider:myDataValues, 
+    			            type:"pie", 
+    			            seriesCollection:[
+    			                {
+    			                    categoryKey:"day",
+    			                    valueKey:"taxes"
+    			                }
+    			            ]
+    			        });
+    			});
+    	
     	//window.localStorage.clear();
         var contacts = window.localStorage.getItem("contacts");
         if (contacts == null) {
@@ -191,7 +217,7 @@ var app = {
     		
     		try {
     			var displayName = contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value;
-	    		var contactName = "<li><a href='#'>" + (contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value) + "</a></li>";
+	    		var contactName = "<li><a href='#contactdetails' data-rel='dialog'>" + (contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value) + "</a></li>";
 	    		contactsStr += contactName;
     		} catch (e) {
     			// do nothing\
