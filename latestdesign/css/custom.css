@@ -1,0 +1,31 @@
+	.nav-glyphish .ui-btn .ui-btn-inner {
+padding: 20px !important;
+}
+.nav-glyphish .ui-btn .ui-icon {
+width: 30px!important;
+height: 30px!important;
+margin-left: -15px !important;
+box-shadow: none!important;
+-moz-box-shadow: none!important;
+-webkit-box-shadow: none!important;
+-webkit-border-radius: none !important;
+border-radius: none !important;
+}
+#Contacts .ui-icon {
+background:  url(../content/icons/Contacts.png) 50% 50% no-repeat;
+}
+#Team .ui-icon {
+background:  url(../content/icons/Team.png) 50% 50% no-repeat;
+}
+#Schedule .ui-icon {
+background:  url(../content/icons/Schedule.png) 50% 50% no-repeat;
+}
+#Conference .ui-icon {
+background:  url(../content/icons/Conference.png) 50% 50% no-repeat;
+}
+#Settings .ui-icon {
+background:  url(../content/icons/Settings.png) 50% 50% no-repeat;
+}
+
+
+h2.ui-li-heading {padding-top:0;margin-top:0;}
