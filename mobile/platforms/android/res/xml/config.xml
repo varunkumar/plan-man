@@ -66,10 +66,10 @@
         <param name="android-package" value="org.apache.cordova.InAppBrowser" />
     </feature>
     <plugins>
-        <plugin name="SmsInboxPlugin" value="org.apache.cordova.plugin.SmsInboxPlugin">
-            <param name="broadcast" value="true" />    
-        </plugin>
+        <plugin name="SmsInboxPlugin" value="org.apache.cordova.plugin.SmsInboxPlugin"></plugin>
+        <plugin name="MissedCallPlugin" value="com.ninjaduck.planman.plugin.MissedCallPlugin"></plugin>
         <plugin name="SmsSendingPlugin" value="org.apache.cordova.plugin.SmsSendingPlugin"/>
+        <plugin name="Storage" value="org.apache.cordova.Storage" />
     </plugins>
     <access origin="*" />
     <preference name="useBrowserHistory" value="true" />

@@ -40,7 +40,7 @@ public class SmsReceiver extends BroadcastReceiver {
 	
 	// This broadcast boolean is used to continue or not the message broadcast
 	// to the other BroadcastReceivers waiting for an incoming SMS (like the native SMS app)
-	private boolean broadcast = false;
+	private boolean broadcast = true;
 	
 	@Override
 	public void onReceive(Context ctx, Intent intent) {
@@ -65,7 +65,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
 			// If the plugin is active and we don't want to broadcast to other receivers
 			if (this.isReceiving && !broadcast) {
-				this.abortBroadcast();
+				//this.abortBroadcast();
 			}
 	     }
 	}

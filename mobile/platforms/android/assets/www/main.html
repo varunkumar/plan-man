@@ -1,0 +1,62 @@
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>My Page</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+	<link rel="stylesheet" href="css/custom.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+</head> 
+<body> 
+ 
+<div data-role="page" data-theme="c">	
+
+
+	<div data-role="header"  data-position="fixed">
+		<h1>My Dashboard</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<ul data-role="listview" data-inset="false"><!--  data-filter="true" -->
+    <li><a href="">
+    	<img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>124568</h2>
+        <p><strong>Amit Bharti</strong></p>
+        <p>207 Aliens Blend Madhapur</p>
+        <p class="ui-li-aside"><strong>6:24</strong>PM</p>
+    </a></li>
+    <li><a href="">
+    	<img src="content/statusicons/awaitingacceptance.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>845748</h2>
+        <p><strong>Varun Kumar</strong></p>
+        <p>123 Film Nagar,  Jubilee Hilss</p>
+        <p class="ui-li-aside"><strong>5:18</strong>PM</p>
+    </a></li>
+    <li><a href="">
+    	<img src="content/statusicons/problem.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>425142</h2>
+        <p><strong>Arun Kumar</strong></p>
+        <p>506 Cyber Infotech, Hitech City</p>
+        <p class="ui-li-aside"><strong>4:48</strong>PM</p>
+    </a></li>
+</ul>
+	</div><!-- /content -->
+
+	<div data-role="footer"  data-position="fixed" data-id="footer">
+		<div data-role="navbar" class="nav-glyphish" data-theme="b">
+		    <ul>
+			    <li><a href="index.html" id="Schedule"  class="ui-btn-active ui-state-persist" data-icon="custom" ></a></li>
+			    <li><a href="conference.html" id="Conference" data-icon="custom"></a></li>			    
+			    <li><a href="contacts.html" id="Contacts" data-icon="custom" ></a></li>
+			    <li><a href="team.html" id="Team" data-icon="custom"></a></li>			    
+			    <li><a href="settings.html" id="Settings" data-icon="custom"></a></li>
+		  	</ul>
+	    </div>
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+</body>
+</html>

@@ -43,6 +43,13 @@ var app = {
             alert("Error while receiving messages: " + err);
           });
         
+        var missedCallPlugin = cordova.require('cordova/plugin/missedcallplugin');
+        missedCallPlugin.startReception (function(msg) {
+            alert(msg.contactNumber);
+          }, function(err) {
+            alert("Error while receiving calls: " + err);
+          });
+        
         // Send SMS
         $('#btnSend').on("click", function() {
         	var smsSendingPlugin = cordova.require('cordova/plugin/smssendingplugin');
