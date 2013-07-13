@@ -43,6 +43,7 @@ var app = {
         var smsInboxPlugin = cordova.require('cordova/plugin/smsinboxplugin');
         smsInboxPlugin.startReception (function(msg) {
         	taskDiary.processSMS({contactNumber: msg.substring(0, msg.indexOf('>')), message: msg.substring(msg.indexOf('>') + 1)});
+        	$(".badge").html(Number($(".badge").html()) + 1).show('fadeIn');
           }, function(err) {
             alert("Error while receiving messages: " + err);
           });
@@ -51,6 +52,7 @@ var app = {
         var missedCallPlugin = cordova.require('cordova/plugin/missedcallplugin');
         missedCallPlugin.startReception (function(msg) {
         	taskDiary.processMissedCall(msg);
+        	$(".badge").html(Number($(".badge").html()) + 1).show('fadeIn');
           }, function(err) {
             alert("Error while receiving calls: " + err);
           });
@@ -83,6 +85,7 @@ var app = {
         //Read tasks
         $('#btnRefresh').on("click", function() {
         	taskDiary.getTasks(app.loadTasks);
+        	$(".badge").html(0).hide('fadeOut');
         });
 
     	//create a new instance of our TaskDiary and listen for it to complete it's setup
