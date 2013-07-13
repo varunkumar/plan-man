@@ -86,24 +86,22 @@ var app = {
         });
 
     	//create a new instance of our TaskDiary and listen for it to complete it's setup
-    	taskDiary = new TaskDiary();
-    	taskDiary.setup(function() {});
+    	/*taskDiary = new TaskDiary();
+    	taskDiary.setup(function() {});*/
     	
         if (app.page == "contacts") {
 	        var options = new ContactFindOptions();
-	        options.filter="Varun"; 
+	        options.filter=""; 
 	        options.multiple=true;
 	        var fields = ["*"];
-	        $('#contactsList').html("<li data-role='list-divider'>AB</li>");
-	        var contactsStr = "<li data-role='list-divider'>AB</li>";
+	        var contactsStr = "";
 	        $('#contactsList').html("Getting the contacts list...");
-	        console.log("Updating the contacts...");
 	        navigator.contacts.find(fields, function(contacts) {
 	        	for (var i = 0; i < contacts.length; i++) {
 	        		var contactName = "<li><a href='#'>" + (contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value) + "</a></li>";
 	        		contactsStr += contactName;
 	        	}
-	        	//$('#contactsList').html("<li data-role='list-divider'>A</li><li><a href='#'>Inbox</a></li>");
+	        	$('#contactsList').html(contactsStr).listview('refresh');
 	        }, function(err) {
 	        	$('#contactsList').html("Error has occurred while fetching the contacts...");
 	        }, options);
