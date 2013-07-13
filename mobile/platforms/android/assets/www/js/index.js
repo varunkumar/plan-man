@@ -106,7 +106,67 @@ var app = {
 	        }, function(err) {
 	        	$('#contactsList').html("Error has occurred while fetching the contacts...");
 	        }, options);
+        
+        var contacts = window.localStorage.getItem("contacts");
+        if (contacts == null) {
+        	app.buildContactList([], "Arun");
+        } else {
+        	app.renderContacts(JSON.parse(contacts));
         }
+    },
+    buildContactList: function(allContacts, name) {
+    	if (name == "Arun")
+    		window.localStorage.clear();
+    	
+    	var promise = 0;
+    	
+    	var fields = ["*"];
+    	var options = new ContactFindOptions();
+        options.filter = name; 
+        options.multiple = true;
+        navigator.contacts.find(fields, function(contacts){
+        	for (var i = 0; i < contacts.length; i++) {
+        		allContacts.push(contacts[i]);
+        	}
+        	if (name == "Arun")
+    			app.buildContactList(allContacts, "Varun");
+    		else if (name == "Varun")
+    			app.buildContactList(allContacts, "Raghu");
+    		else if (name == "Raghu")
+    			app.buildContactList(allContacts, "Amit");
+    		else if (name == "Amit") {
+    			window.localStorage.setItem("contacts", JSON.stringify(allContacts));
+    	        app.renderContacts(allContacts);
+    		}
+    			
+        }, function(err) {
+        	//$('#contactsList').html("Error has occurred while fetching the contacts...");
+        	if (name == "Arun")
+    			app.buildContactList(allContacts, "Raghu");
+    		else if (name == "Raghu")
+    			app.buildContactList(allContacts, "Amit");
+    		else if (name == "Amit") {
+    			window.localStorage.setItem("contacts", JSON.stringify(allContacts));
+    	        app.renderContacts(allContacts);
+    		}
+        }, options);
+
+        
+    },
+    renderContacts: function(contacts) {
+    	$('#contactsList').html("Updating the contacts list...");
+    	var contactsStr = "";
+    	for (var i = 0; i < contacts.length; i++) {
+    		
+    		try {
+    			var displayName = contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value;
+	    		var contactName = "<li><a href='#'>" + (contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value) + "</a></li>";
+	    		contactsStr += contactName;
+    		} catch (e) {
+    			// do nothing
+    		}
+    	}
+    	$('#contactsList').html(contactsStr);//.listview('refresh');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
