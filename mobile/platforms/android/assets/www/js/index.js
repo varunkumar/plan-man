@@ -91,12 +91,13 @@ var app = {
     	
         if (app.page == "contacts") {
 	        var options = new ContactFindOptions();
-	        options.filter=""; 
+	        options.filter="A"; 
 	        options.multiple=true;
 	        var fields = ["*"];
 	        var contactsStr = "";
 	        $('#contactsList').html("Getting the contacts list...");
 	        navigator.contacts.find(fields, function(contacts) {
+	        	$('#contactsList').html("Updating the contacts list...");
 	        	for (var i = 0; i < contacts.length; i++) {
 	        		var contactName = "<li><a href='#'>" + (contacts[i].displayName || contacts[i].name.formatted || contacts[i].emails[0].value) + "</a></li>";
 	        		contactsStr += contactName;

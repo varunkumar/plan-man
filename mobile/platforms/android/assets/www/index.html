@@ -1,49 +1,46 @@
+
 <!DOCTYPE html> 
 <html> 
 <head> 
 	<title>My Page</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
 	<link rel="stylesheet" href="css/custom.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="js/jquery-1.9.1.min.js"></script>
 	<script>
-	$(document).bind('mobileinit', function() {
-            $.extend($.mobile, {
-                defaultPageTransition: 'none',
-                defaultDialogTransition: 'none'
-            });
-        });
-	</script>
-	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+       $(document).on('mobileinit', function() {
+           $.mobile.defaultPageTransition = 'none';
+           $.mobile.defaultDialogTransition = 'none';
+       });
+    </script>
+	<script src="js/jquery.mobile-1.3.1.min.js"></script>
 </head> 
 <body> 
  
-<div data-role="page" data-theme="c">	
-
-
+<div data-role="page" data-theme="c" id="index">	
 	<div data-role="header" data-position="fixed">
-		<a href="#" data-icon="" data-corners="false">Edit</a>
+		<!-- <a href="#" data-icon="" data-corners="false">Edit</a> -->
     <h1>My Dashboard</h1>
-    <a href="addtask.html" data-icon="" data-corners="false">Add</a>
+    <a href="#addtask" data-icon="plus" class="ui-btn-right" data-corners="false">Add</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
 		<ul data-role="listview" data-inset="false"><!--  data-filter="true" -->
-    <li><a href="">
+    <li><a href="#taskdetails">
     	<img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">
         <h2>124568</h2>
         <p><strong>Amit Bharti</strong></p>
         <p>207 Aliens Blend Madhapur</p>
         <p class="ui-li-aside"><strong>6:24</strong>PM</p>
     </a></li>
-    <li><a href="">
+    <li><a href="#taskdetails">
     	<img src="content/statusicons/awaitingacceptance.png" alt="France" class="ui-li-icon ui-corner-none">
         <h2>845748</h2>
-        <p><strong>Varun Kumar</strong></p>
+        <p><strong>VarunKumar</strong></p>
         <p>123 Film Nagar,  Jubilee Hilss</p>
         <p class="ui-li-aside"><strong>5:18</strong>PM</p>
     </a></li>
-    <li><a href="">
+    <li><a href="#taskdetails">
     	<img src="content/statusicons/problem.png" alt="France" class="ui-li-icon ui-corner-none">
         <h2>425142</h2>
         <p><strong>Arun Kumar</strong></p>
@@ -51,33 +48,819 @@
         <p class="ui-li-aside"><strong>4:48</strong>PM</p>
     </a></li>
 </ul>
-
-<a href="#" id="addTask">Add Task</a>
 	</div><!-- /content -->
-<div id="divContacts"></div>
+
 	<div data-role="footer"  data-position="fixed" data-id="footer">
 		<div data-role="navbar" class="nav-glyphish" data-theme="b">
 		    <ul>
-			    <li><a href="index.html" id="Schedule"  class="ui-btn-active ui-state-persist" data-icon="custom" ></a></li>
-			    <li><a href="conference.html" id="Conference" data-icon="custom"></a></li>			    
-			    <li><a href="contacts.html" data-ajax="false" id="Contacts" data-icon="custom" ></a></li>
-			    <li><a href="team.html" id="Team" data-icon="custom"></a></li>			    
-			    <li><a href="settings.html" id="Settings" data-icon="custom"></a></li>
+			    <li><a href="#index" id="Schedule"  class="ui-btn-active ui-state-persist" data-icon="custom" ></a></li>
+			    <li><a href="#conference" id="Conference" data-icon="custom"></a></li>			    
+			    <li><a href="#contacts" id="Contacts" data-icon="custom" ></a></li>
+			    <li><a href="#team" id="Team" data-icon="custom"></a></li>			    
+			    <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
 		  	</ul>
 	    </div>
 	</div><!-- /footer -->
 
 </div><!-- /page -->
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/plugins/SmsInboxPlugin.js"></script>
-        <script type="text/javascript" src="js/plugins/SmsSendingPlugin.js"></script>
-        <script type="text/javascript" src="js/plugins/MissedCallPlugin.js"></script>
-        
-        <script type="text/javascript" src="js/taskDiary.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize('index');
-        </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="conference">   
+
+
+    <div data-role="header"  data-position="fixed">
+        <h1>My Title</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <ul data-role="listview" data-inset="false"><!--  data-filter="true" -->
+    <li><a href="">
+        <img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>Stephen Weber</h2>
+        <p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+        <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+        <p class="ui-li-aside"><strong>6:24</strong>PM</p>
+    </a></li>
+    <li><a href="">
+        <img src="content/statusicons/awaitingacceptance.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>jQuery Team</h2>
+        <p><strong>Boston Conference Planning</strong></p>
+        <p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+        <p class="ui-li-aside"><strong>9:18</strong>AM</p>
+    </a></li>
+    <li><a href="">
+        <img src="content/statusicons/problem.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>Avery Walker</h2>
+        <p><strong>Re: Dinner Tonight</strong></p>
+        <p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait! </p>
+        <p class="ui-li-aside"><strong>4:48</strong>PM</p>
+    </a></li>
+</ul>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule"  class="ui-btn-active ui-state-persist" data-icon="custom"></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>
+                
+                <li><a href="#contacts" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>
+                
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" data-corners="false" id="contactdetails">  
+
+    <div data-role="header" data-close-btn="right">
+        
+    <h1>Set as client/SE</h1>
+    
+    </div><!-- /header -->
+
+
+ 
+    <div data-role="content">   
+         <ul data-role="listview">
+                <li>
+                    <label for="">Name:</label>
+                    <span class="readinglabel">Amit Bharti</span>
+                </li>
+                <li>
+                    <label for="">Phone Number:</label>
+                    <span class="readinglabel">+91 99639 51917</span>
+                </li>
+                <li>
+                    <label for="">Address:</label>
+                    <span class="readinglabel">207 Aliens Blend, Madhapur</span>
+                </li>
+                <li><label for="">Set it as:</label>
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="none" checked="checked">
+                        <label for="radio-choice-h-2a">None</label>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="client">
+                        <label for="radio-choice-h-2b">Client</label>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="se">
+                        <label for="radio-choice-h-2c">Service Engineer</label>
+                    </fieldset>
+                </li>
+
+            </ul>
+    </div><!-- /content -->
+
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="contacts"> 
+
+
+    <div data-role="header"  data-position="fixed">
+        <h1>My Contacts</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search Contacts">
+            <li data-role="list-divider">A</li>
+    <li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li>
+    <li data-role="list-divider">B</li>
+    <li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li><li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li><li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li><li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li><li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li><li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li><li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li><li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li><li><a href="#contactdetails" data-rel="dialog">Inbox</a></li>
+    <li><a href="#contactdetails" data-rel="dialog">Outbox</a></li>
+        </ul>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed"  data-id="footer">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule" data-icon="custom"></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>              
+                <li><a href="#contacts" class="ui-btn-active ui-state-persist" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>              
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="edittask"> 
+
+
+    <div data-role="header" data-position="fixed">
+        <a href="#index" data-icon="" data-corners="false">Cancel</a>
+    <h1>Edit task</h1>
+    <a href="#index" data-icon="check" data-corners="false">Save</a>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <form>
+            <ul data-role="listview">
+               <li data-role="fieldcontain">
+                    <label for="name8">Task Ref Number:</label>
+                    <span class="readinglabel">123456</span>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="select-choice-mini">Task Status:</label>
+                    <select name="select-choice-mini" id="select-choice-mini" data-mini="true" data-inline="true">
+                        <option value="Initiated">Initiated</option>
+                        <option value="Assigned">Assigned to SE</option>
+                        <option value="Acknowledged">Problem Acknowledged</option>
+                        <option value="Finished">Finished</option>
+                    </select>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="name2">Client Name:</label>
+                    <input type="text" name="name2" id="name2" value="" data-clear-btn="true">
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="textarea2">Task Description:</label>
+                <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="name3">Assign to</label>
+                    <input type="text" name="name3" id="name3" value="" data-clear-btn="true">
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="mydate">Appointment Time</label>
+                    <input name="mydate" id="mydate" type="time" data-role="datebox">
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="select-choice-1" class="select">Location</label>
+                    <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>                    
+                </li>
+            </ul>
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed" data-id="footer">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule"  class="ui-btn-active ui-state-persist" data-icon="custom" ></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>              
+                <li><a href="#contacts" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>              
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="serviceengineers"> 
+
+
+    <div data-role="header"  data-position="fixed">
+        <h1>My Contacts</h1>
+        <a href="#" data-role="button" data-corners="false" data-theme="" data-icon="plus">Add</a>
+        <div data-role="navbar" data-theme="b">
+            <ul>
+                <li><a href="#team">All</a></li>
+                <li><a href="#clients">Clients</a></li>
+                <li><a href="#ServiceEngineers" class="ui-btn-active ui-state-persist" >Service Engineers</a></li>              
+            </ul>
+        </div>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search Contacts">
+            
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+        </ul>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed"  data-id="footer">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule" data-icon="custom"></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>              
+                <li><a href="#contacts" class="ui-btn-active ui-state-persist" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>              
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="settings"> 
+
+
+    <div data-role="header"  data-position="fixed">
+        <h1>My Title</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <ul data-role="listview" data-inset="false"><!--  data-filter="true" -->
+    <li><a href="">
+        <img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>Stephen Weber</h2>
+        <p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+        <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+        <p class="ui-li-aside"><strong>6:24</strong>PM</p>
+    </a></li>
+    <li><a href="">
+        <img src="content/statusicons/awaitingacceptance.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>jQuery Team</h2>
+        <p><strong>Boston Conference Planning</strong></p>
+        <p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+        <p class="ui-li-aside"><strong>9:18</strong>AM</p>
+    </a></li>
+    <li><a href="">
+        <img src="content/statusicons/problem.png" alt="France" class="ui-li-icon ui-corner-none">
+        <h2>Avery Walker</h2>
+        <p><strong>Re: Dinner Tonight</strong></p>
+        <p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait! </p>
+        <p class="ui-li-aside"><strong>4:48</strong>PM</p>
+    </a></li>
+</ul>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule"  class="ui-btn-active ui-state-persist" data-icon="custom"></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>
+                
+                <li><a href="#contacts" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>
+                
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="team"> 
+
+
+    <div data-role="header"  data-position="fixed">
+        <h1>My Contacts</h1>
+        <a href="#" data-role="button" data-corners="false" data-theme="" data-icon="plus">Add</a>
+        <div data-role="navbar" data-theme="b">
+            <ul>
+                <li><a href="#team" class="ui-btn-active ui-state-persist" >All</a></li>
+                <li><a href="#clients">Clients</a></li>
+                <li><a href="#serviceengineers">Service Engineers</a></li>              
+            </ul>
+        </div>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search Contacts">
+            
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+        </ul>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed"  data-id="footer">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule" data-icon="custom"></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>              
+                <li><a href="#contacts" class="ui-btn-active ui-state-persist" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>              
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="taskdetails">  
+
+
+    <div data-role="header" data-position="fixed">
+        <a href="#index" data-icon="back" data-corners="false">Back</a>
+    <h1>Task Details</h1>
+    <a href="#edittask" data-icon="edit" data-corners="false">Edit</a>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <form>
+            <ul data-role="listview">
+                <li data-role="fieldcontain">
+                    <label for="">Task Ref Number:</label>
+                    <span class="readinglabel">123456</span>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="">Task Status:</label>
+                    <span class="readinglabel">Accepted by SE</span>
+
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="name2">Client Name:</label>
+                    <span class="readinglabel">Amit Bharti</span>
+                </li>
+                <li data-role="fieldcontain">
+                   <label for="name2">Task Descrition:</label>
+                    <span class="readinglabel">Client is having a problem with the geyser</span>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="name2">Assigned To:</label>
+                    <span class="readinglabel">Kapil Sharma</span>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="name2">Appointment Time:</label>
+                    <span class="readinglabel">6:15 PM</span>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="name2">Client Location:</label>
+                    <span class="readinglabel">207, Aliens Blend, Madhapur 9963951917</span>                
+                </li>
+            </ul>
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed" data-id="footer">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule"  class="ui-btn-active ui-state-persist" data-icon="custom" ></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>              
+                <li><a href="#contacts" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>              
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="clients">  
+
+
+    <div data-role="header"  data-position="fixed">
+        <h1>My Contacts</h1>
+        <a href="#" data-role="button" data-corners="false" data-theme="" data-icon="plus">Add</a>
+        <div data-role="navbar" data-theme="b">
+            <ul>
+                <li><a href="#team">All</a></li>
+                <li><a href="#clients" class="ui-btn-active ui-state-persist" >Clients</a></li>
+                <li><a href="#ServiceEngineers">Service Engineers</a></li>              
+            </ul>
+        </div>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search Contacts">
+            
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+    
+    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li><li><a href="#">Inbox</a></li>
+    <li><a href="#">Outbox</a></li>
+        </ul>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed"  data-id="footer">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule" data-icon="custom"></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>              
+                <li><a href="#contacts" class="ui-btn-active ui-state-persist" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>              
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-role="page" data-theme="c" id="addtask">  
+
+
+    <div data-role="header" data-position="fixed">
+    <a href="#index" data-icon="" data-corners="false">Cancel</a>
+    <h1>Add task</h1>
+    <a href="#index" data-icon="check" data-corners="false">Save</a>
+    </div><!-- /header -->
+
+    <div data-role="content">   
+        <form>
+            <ul data-role="listview">
+                <li data-role="fieldcontain">
+                    <label for="name2">Client Name:</label>
+                    <input type="text" name="name2" id="name2" value="" data-clear-btn="true">
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="textarea2">Task Description:</label>
+                <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="name3">Assign to</label>
+                    <input type="text" name="name3" id="name3" value="" data-clear-btn="true">
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="mydate">Appointment Time</label>
+                    <input name="mydate" id="mydate" type="time" data-role="datebox">
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="select-choice-1" class="select">Location</label>
+                    <textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>                    
+                </li>
+            </ul>
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer"  data-position="fixed" data-id="footer">
+        <div data-role="navbar" class="nav-glyphish" data-theme="b">
+            <ul>
+                <li><a href="#index" id="Schedule"  class="ui-btn-active ui-state-persist" data-icon="custom" ></a></li>
+                <li><a href="#conference" id="Conference" data-icon="custom"></a></li>              
+                <li><a href="#contacts" id="Contacts" data-icon="custom" ></a></li>
+                <li><a href="#team" id="Team" data-icon="custom"></a></li>              
+                <li><a href="#settings" id="Settings" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="cordova.js"></script>
+
+        <script type="text/javascript" src="js/plugins/SmsInboxPlugin.js"></script>
+
+        <script type="text/javascript" src="js/plugins/SmsSendingPlugin.js"></script>
+
+        <script type="text/javascript" src="js/plugins/MissedCallPlugin.js"></script>
+
+        
+
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <script type="text/javascript">
+
+            app.initialize();
+
+        </script>
 </body>
 </html>

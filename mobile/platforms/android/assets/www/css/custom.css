@@ -26,6 +26,11 @@ background:  url(../content/icons/Conference.png) 50% 50% no-repeat;
 #Settings .ui-icon {
 background:  url(../content/icons/Settings.png) 50% 50% no-repeat;
 }
+#active .ui-icon {
+background:  url(../content/statusicons/active.png) 50% 50% no-repeat;
+}
 
 
 h2.ui-li-heading {padding-top:0;margin-top:0;}
+
+.ui-listview span.readinglabel{font-weight: normal; padding-left:10px;}
