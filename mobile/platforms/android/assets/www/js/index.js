@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var taskDiary;
 var app = {
     // Application Constructor
     initialize: function() {
@@ -60,6 +61,24 @@ var app = {
                 alert("Message not sent :s");
               });
         });
+        
+        //Add task
+        $('#addTask').on("click", function() {
+        	taskDiary.saveTask({name:"Task1",desc:"Test Task",dueDate:new Date(),contacts:[100, 102],taskStatus:'Assigned'}, function() {
+    			alert("Task added!!");
+    		});
+        });
+
+        //Read tasks
+        $('#getTasks').on("click", function() {
+        	taskDiary.getTasks(function(data) {
+    			alert("Number of tasks retrieved = " + data.length);
+    		});
+        });
+
+    	//create a new instance of our TaskDiary and listen for it to complete it's setup
+    	taskDiary = new TaskDiary();
+    	taskDiary.setup(function() {});
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
