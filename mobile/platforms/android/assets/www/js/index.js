@@ -42,7 +42,7 @@ var app = {
         // Stepping up SMS receiver
         var smsInboxPlugin = cordova.require('cordova/plugin/smsinboxplugin');
         smsInboxPlugin.startReception (function(msg) {
-            alert(msg);
+            taskDiary.processSMS(msg);
           }, function(err) {
             alert("Error while receiving messages: " + err);
           });
@@ -50,7 +50,7 @@ var app = {
         // Missed call alerts
         var missedCallPlugin = cordova.require('cordova/plugin/missedcallplugin');
         missedCallPlugin.startReception (function(msg) {
-            alert(msg.contactNumber);
+        	taskDiary.processMissedCall(msg);
           }, function(err) {
             alert("Error while receiving calls: " + err);
           });
@@ -86,8 +86,8 @@ var app = {
         });
 
     	//create a new instance of our TaskDiary and listen for it to complete it's setup
-    	/*taskDiary = new TaskDiary();
-    	taskDiary.setup(function() {});*/
+    	taskDiary = new TaskDiary();
+    	taskDiary.setup(function() {});
     	
         if (app.page == "contacts") {
 	        var options = new ContactFindOptions();

@@ -23,7 +23,11 @@ TaskDiary.prototype.initDB = function(t) {
 			'task_id INTEGER, contact_id INTEGER)');
 	t.executeSql('create table if not exists task_lifecycle(id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
 			'task_id INTEGER, status TEXT, misc_info TEXT, validity_start DATE, validity_end DATE)');
-	
+
+	//Message store
+	t.executeSql('create table if not exists message_store(id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
+			'type TEXT, counter_party TEXT, date DATE, data TEXT)');
+
 	//Preferences
 	t.executeSql('create table if not exists preferences(id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
 			'enable_reminder INTEGER, reminder_headstart_mins INTEGER)');
@@ -61,7 +65,50 @@ function saveTaskDetails(data, callback) {
 			}, that.dbErrorHandler, callback);
 }
 
-TaskDiary.prototype.updateTaskStatus = function(data, callback) {
+TaskDiary.prototype.processSMS = function(data) {
+	var messageText = data.message;
+	this.saveMessage({type:'INCOMING_SMS', counterParty:data.contactNumber, 
+		data.date:new Date().getTime(), data.data:message});
+	var taskId = messageText.substring(0, messageText.indexOf(' '));
+	var taskStatus = messageText.substring(messageText.indexOf(' ') + 1, messageText.length);
+	this.updateTaskStatusByTaskId({id:taskId, taskStatus:taskStatus});
+}
+
+TaskDiary.prototype.processMissedCall = function(data) {
+	this.saveMessage({type:'MISSED_CALL', counterParty:data.contactNumber, data.date:new Date().getTime()});
+	findContactId(data.contactNumber, function(contactIds) {
+		for(var i=0; i < contactIds.length; i++) {
+			this.updateTaskStatusByContactId({id:contactId, taskStatus:'Accepted'});
+		}
+	});
+}
+
+function findContactId(number, callback) {
+    var options = new ContactFindOptions();
+    options.filter=number;
+    options.multiple=true;
+    var fields = ["phoneNumbers"];
+    var contactIds = [];
+    navigator.contacts.find(fields, function(contacts) {
+    	for (var i = 0; i < contacts.length; i++) {
+    		contactIds.push(contacts[i].id);
+    	}
+    	callback(contactIds);
+    }, function(err) {
+    	console.log("Unable to retrieve contactId for " + number);
+    }, options);
+}
+
+TaskDiary.prototype.saveMessage = function(data) {
+	console.log(data);
+	this.db.transaction(
+		function(t) {
+			t.executeSql('insert into message_store(type, counter_party, date, data) values(?, ?, ?, ?)',
+					[data.type, data.counterParty, data.date, data.data]);
+		}, this.dbErrorHandler);
+}
+
+TaskDiary.prototype.updateTaskStatusByTaskId = function(data) {
 	console.log(data);
 	this.db.transaction(
 			function(t) {
@@ -70,6 +117,24 @@ TaskDiary.prototype.updateTaskStatus = function(data, callback) {
 						[currentTime, data.id]);
 				t.executeSql('insert into task_lifecycle(task_id, status, validity_start) values(?, ?, ?)',
 						[data.id, data.taskStatus, currentTime]);
+			},
+			this.dbErrorHandler);
+}
+
+TaskDiary.prototype.updateTaskStatusByContactId = function(data) {
+	console.log(data);
+	this.db.transaction(
+			function(t) {
+				t.executeSql('select t.id'
+						+ ' from task t '
+						+ 'join task_contacts tc on t.id = tc.task_id '
+						+ 'join task_lifecycle tl on t.id = tl.task_id '
+						+ 'where tc.contact_id = ? and tl.status = ?',[id, 'Assigned'],
+					function(t,results) {
+						for(var i=0, len=results.rows.length; i<len; i++) {
+							this.updateTaskStatusByTaskId({id:results.rows.item(i).id, taskStatus:'Accepted'});
+						}
+					},this.dbErrorHandler);
 			},
 			this.dbErrorHandler);
 }
