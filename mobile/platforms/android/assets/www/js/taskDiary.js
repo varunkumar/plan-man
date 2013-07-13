@@ -44,9 +44,7 @@ TaskDiary.prototype.saveTask = function(data, callback) {
 			} else {
 				t.executeSql('update task set name = ?, description = ?, dueDate = ? where id = ?',
 						[data.name, data.desc, data.dueDate, data.id],
-						function() {
-							saveTaskDetails(data, callback);
-						}, this.dbErrorHandler);
+						callback, this.dbErrorHandler);
 			}
 		}, this.dbErrorHandler);
 }
