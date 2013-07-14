@@ -17,6 +17,13 @@
  * under the License.
  */
 var taskDiary;
+var iconMap = {
+		"completed": "awaitingacceptance",
+		"inprogress": "active",
+		"assigned": "assigned",
+		"accepted": "active",
+		"rejected": "problem"
+};
 var app = {
     // Application Constructor
     initialize: function(page) {
@@ -206,15 +213,8 @@ var app = {
     	var str = "";
     	for (var i = 0; i < data.length; i++) {
     		var task = '<li><input type="hidden" class="taskId" value="' + data[i].id + '"/>';
-    		var iconMap = {
-    				"completed": "awaitingacceptance",
-    				"inprogress": "active",
-    				"assigned": "assigned",
-    				"accepted": "active",
-    				"rejected": "problem"
-    		};
     		task += "<a class='taskItem' href='#taskdetails'>";
-    		task += '<img src="content/statusicons/' + iconMap[data[i].currentStatus.toLowerCase()] + '.png" alt="France" class="ui-li-icon ui-corner-none">';
+    		task += '<img src="content/statusicons/' + iconMap[data[i].currentStatus.toLowerCase()] + '.png" class="ui-li-icon ui-corner-none">';
     		task += '<h2>PM' + data[i].id + ': ' + data[i].name + '</h2>';
     		task += '<p><strong>' + app.findNameById(data[i].contacts[0]) + '</strong></p>';
     		task += '<p>' + data[i].location + '</p>';
@@ -238,7 +238,9 @@ var app = {
     			$("#taskdetails").find("#location").html(task.location);
     			var statusHistory = "";
     			for(var i=0; i < task.status.length; i++) {
-    				statusHistory += "<li><b>" + task.status[i].status + "</b> as of " + task.status[i].validityStart + "</li>";
+    				statusHistory += '<div><img src="content/statusicons/' + iconMap[task.status[i].status.toLowerCase()] + '.png">';
+    				statusHistory += "<b>" + task.status[i].status + "</b> as of " + task.status[i].validityStart + "</div>";
+    				statusHistory += "<div style='clear:both;'></div>";
     			}
     			$("#taskdetails").find("#statusHistory").html(statusHistory);
     		}, $(this).parent().find(".taskId").val());
