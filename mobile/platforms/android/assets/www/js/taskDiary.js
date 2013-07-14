@@ -201,11 +201,12 @@ TaskDiary.prototype.getTasks = function(callback, id) {
 			} else {
 				whereClause += 't.id = ?';
 			}
-			t.executeSql('select t.id, t.name, t.description, t.dueDate, t.location, tc.contact_id, tl.status, tl.misc_info, tl.validity_start, tl.validity_end'
+			t.executeSql('select t.id, t.name, t.description, t.dueDate, t.location, tc.id as task_contact_id,' 
+					+ ' tc.contact_id, tl.id as task_status_id, tl.status, tl.misc_info, tl.validity_start, tl.validity_end'
 					+ ' from task t '
 					+ 'join task_contacts tc on t.id = tc.task_id '
 					+ 'join task_lifecycle tl on t.id = tl.task_id'
-					+ whereClause,[id],
+					+ whereClause + ' order by t.id, tl.validity_start desc',[id],
 				function(t,results) {
 					callback(that.fixResults(results));
 				},this.dbErrorHandler);
@@ -226,17 +227,17 @@ TaskDiary.prototype.fixResults = function(res) {
 			task.desc = row.description;
 			task.dueDate = row.dueDate;
 			task.location = row.location;
-			task.contacts = [];
-			task.status = [];
+			task.contactsMap = new Object();
+			task.statusMap = new Object();
 		}
-		task.contacts.push(row.contact_id);
+		task.contactsMap[row.task_contact_id] = row.contact_id; 
 
 		var status = new Object();
 		status.status = row.status;
 		status.miscInfo = row.misc_info;
 		status.validityStart = row.validity_start;
 		status.validityEnd = row.validity_end;
-		task.status.push(status);
+		task.statusMap[row.task_status_id] = status;
 		if(row.validity_end == null) {
 			task.currentStatus = row.status;
 		}
@@ -244,7 +245,19 @@ TaskDiary.prototype.fixResults = function(res) {
 		temp[row.id] = task;
 	}
 	for(key in temp) {
-		result.push(temp[key]);
+		task = temp[key];
+		task.contacts = [];
+		task.status = [];
+
+		for(contact in task.contactsMap) {
+			task.contacts.push(task.contactsMap[contact]);
+		}
+
+		for(status in task.statusMap) {
+			task.status.push(task.statusMap[status]);
+		}
+
+		result.push(task);
 	}
 	return result;
 }

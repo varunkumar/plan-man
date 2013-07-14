@@ -236,6 +236,11 @@ var app = {
     			$("#taskdetails").find("#assignedTo").html(app.findNameById(task.contacts[0]));
     			$("#taskdetails").find("#dueDate").html(task.dueDate);
     			$("#taskdetails").find("#location").html(task.location);
+    			var statusHistory = "";
+    			for(var i=0; i < task.status.length; i++) {
+    				statusHistory += "<li><b>" + task.status[i].status + "</b> as of " + task.status[i].validityStart + "</li>";
+    			}
+    			$("#taskdetails").find("#statusHistory").html(statusHistory);
     		}, $(this).parent().find(".taskId").val());
     	});
 	},
