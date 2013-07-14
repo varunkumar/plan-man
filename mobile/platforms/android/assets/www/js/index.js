@@ -132,7 +132,7 @@ var app = {
     			
     			console.log(JSON.stringify(rows1));
     			
-    			YUI().use('charts', function (Y) 
+    			YUI().use('charts-legend', function (Y) 
     	    			{ 
     	    			    var pieGraph = new Y.Chart({
     	    			            render:"#mychart", 
@@ -143,11 +143,20 @@ var app = {
     	    			            seriesCollection:[
     	    			                {
     	    			                    categoryKey:"status",
-    	    			                    valueKey:"count"
+    	    			                    valueKey:"count",
+    	    			                    series: [{style:{fill: {colors:['#4572A7', 
+    	    	    			                                     '#AA4643', 
+    	    	    			                                     '#89A54E', 
+    	    	    			                                     '#80699B', 
+    	    	    			                                     '#3D96AE', 
+    	    	    			                                     '#DB843D', 
+    	    	    			                                     '#92A8CD', 
+    	    	    			                                     '#A47D7C', 
+    	    	    			                                     '#B5CA92']}}}]
     	    			                }
     	    			            ],
     	    			            legend: {
-    	    			            	display: 'right',
+    	    			            	position: 'bottom',
     	    			            	width: 300,
     	                                height: 300,
     	                                styles: {
@@ -157,16 +166,8 @@ var app = {
     	    			            },
     	    			            styles: {
     	    			            	legend: { display: 'bottom' }
-    	    			            },
-    	    			            series: [{style:{colors:['#4572A7', 
-    	    			                                     '#AA4643', 
-    	    			                                     '#89A54E', 
-    	    			                                     '#80699B', 
-    	    			                                     '#3D96AE', 
-    	    			                                     '#DB843D', 
-    	    			                                     '#92A8CD', 
-    	    			                                     '#A47D7C', 
-    	    			                                     '#B5CA92']}}]
+    	    			            }
+    	    			            
     	    			        });
     	    			});
     			YUI().use('charts', function(Y) {
