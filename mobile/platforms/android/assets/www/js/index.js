@@ -208,7 +208,7 @@ var app = {
     		var task = '<li><input type="hidden" class="taskId" value="' + data[i].id + '"/>';
     		var iconMap = {
     				"completed": "awaitingacceptance",
-    				"in progress": "active",
+    				"inprogress": "active",
     				"assigned": "assigned",
     				"accepted": "active",
     				"rejected": "problem"
