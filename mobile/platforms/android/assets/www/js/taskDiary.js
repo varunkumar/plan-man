@@ -31,6 +31,55 @@ TaskDiary.prototype.initDB = function(t) {
 	//Preferences
 	t.executeSql('create table if not exists preferences(id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
 			'enable_reminder INTEGER, reminder_headstart_mins INTEGER)');
+
+	//Load example data
+	t.executeSql('select * from task',
+			[],
+			function(tx, results) {
+				if(results.rows.length == 0) {
+					that.initDBData();
+				}
+			}, this.dbErrorHandler);
+}
+
+TaskDiary.prototype.initDBData = function() {
+	this.db.transaction(
+		function(t) {
+	//Task 1
+	t.executeSql("insert into task(name, description, dueDate, location) values('Server cooling system degraded', 'Few components have failed and system is running in degraded state', '2013-07-14 01:45:00', 'Yahoo server farm, Hyderabad')");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(1, 2406)");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(1, 2848)");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(1, 'Assigned', '2013-07-14 01:00:00', '2013-07-14 01:05:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(1, 'Accepted', '2013-07-14 01:05:00', '2013-07-14 01:10:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(1, 'In Progress', '2013-07-14 01:10:00', '2013-07-14 01:15:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(1, 'Completed', '2013-07-14 01:15:00')");
+
+	//Task 2
+	t.executeSql("insert into task(name, description, dueDate, location) values('Electrical problem at Westin', 'Backup generator is not running', '2013-07-14 02:30:00', 'Westin (Mindspace), Madhapur')");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(2, 4104)");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(2, 2848)");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(2, 'Assigned', '2013-07-14 01:30:00', '2013-07-14 01:35:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(2, 'Accepted', '2013-07-14 01:35:00', '2013-07-14 01:40:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(2, 'In Progress', '2013-07-14 01:40:00')");
+
+	//Task 3
+	t.executeSql("insert into task(name, description, dueDate, location) values('HVAC issue at Westin', 'High noise reported from HVAC system', '2013-07-14 06:15:00', 'Westin (Mindspace), Madhapur')");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(3, 4104)");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(3, 2848)");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(3, 'Assigned', '2013-07-14 01:15:00')");
+
+	//Task 4
+	t.executeSql("insert into task(name, description, dueDate, location) values('Annual electrical maintenance', 'Check all wiring, MCBs, generator', '2013-07-15 09:10:00', 'Harivillu Apartments, Manikonda')");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(4, 2406)");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(4, 2848)");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(4, 'Assigned', '2013-07-14 02:00:00', '2013-07-14 02:05:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(4, 'Accepted', '2013-07-14 02:05:00')");
+
+	//Task N
+	/*t.executeSql("");
+	t.executeSql("");
+	t.executeSql("");*/
+		}, this.dbErrorHandler);
 }
 
 TaskDiary.prototype.saveTask = function(data, callback) {

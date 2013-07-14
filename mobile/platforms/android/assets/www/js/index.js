@@ -194,7 +194,7 @@ var app = {
     	for (var i = 0; i < data.length; i++) {
     		var task = "<li><a href='#taskdetails'>";
     		task += '<img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">';
-    		task += '<h2>' + data[i].name + '</h2>';
+    		task += '<h2>PM' + data[i].id + ': ' + data[i].name + '</h2>';
     		task += '<p><strong>' + app.findNameById(data[i].contacts[0]) + '</strong></p>';
     		task += '<p>' + data[i].location + '</p>';
     		task += '<p>' + data[i].currentStatus + '</p>';
