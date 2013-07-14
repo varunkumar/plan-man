@@ -94,7 +94,8 @@ var app = {
     	
     	taskDiary.getTasks(app.loadTasks);
     	
-    	YUI().use('charts', function (Y) 
+    	$("#Conference").on("click", function() {
+    		YUI().use('charts', function (Y) 
     			{ 
     			    // Create data 
     			    var myDataValues = [
@@ -119,6 +120,7 @@ var app = {
     			            ]
     			        });
     			});
+    	});
     	
     	//window.localStorage.clear();
         var contacts = window.localStorage.getItem("contacts");
