@@ -28,20 +28,6 @@
 
 	<div data-role="content">	
 		<ul id="tasksList" data-role="listview" data-inset="false"><!--  data-filter="true" -->
-    <li><a href="#taskdetails">
-    	<img src="content/statusicons/awaitingacceptance.png" alt="France" class="ui-li-icon ui-corner-none">
-        <h2>845748</h2>
-        <p><strong>VarunKumar</strong></p>
-        <p>123 Film Nagar,  Jubilee Hilss</p>
-        <p class="ui-li-aside"><strong>5:18</strong>PM</p>
-    </a></li>
-    <li><a href="#taskdetails">
-    	<img src="content/statusicons/problem.png" alt="France" class="ui-li-icon ui-corner-none">
-        <h2>425142</h2>
-        <p><strong>Arun Kumar</strong></p>
-        <p>506 Cyber Infotech, Hitech City</p>
-        <p class="ui-li-aside"><strong>4:48</strong>PM</p>
-    </a></li>
 </ul>
 	</div><!-- /content -->
 
@@ -89,7 +75,8 @@
     </div><!-- /header -->
 
     <div data-role="content">
-        <div id="mychart"></div>
+        <div id="mychart"><img src='img/ajax-loader.gif'/></div>
+        <div id="mychart1"><img src='img/ajax-loader.gif'/></div>
     </div><!-- /content -->
 
     <div data-role="footer"  data-position="fixed">
@@ -368,33 +355,67 @@
 
 
     <div data-role="header"  data-position="fixed">
-        <h1>My Title</h1>
+        <h1>My Preferences</h1>
     </div><!-- /header -->
 
     <div data-role="content">   
-        <ul data-role="listview" data-inset="false"><!--  data-filter="true" -->
-    <li><a href="">
-        <img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">
-        <h2>Stephen Weber</h2>
-        <p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
-        <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
-        <p class="ui-li-aside"><strong>6:24</strong>PM</p>
-    </a></li>
-    <li><a href="">
-        <img src="content/statusicons/awaitingacceptance.png" alt="France" class="ui-li-icon ui-corner-none">
-        <h2>jQuery Team</h2>
-        <p><strong>Boston Conference Planning</strong></p>
-        <p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
-        <p class="ui-li-aside"><strong>9:18</strong>AM</p>
-    </a></li>
-    <li><a href="">
-        <img src="content/statusicons/problem.png" alt="France" class="ui-li-icon ui-corner-none">
-        <h2>Avery Walker</h2>
-        <p><strong>Re: Dinner Tonight</strong></p>
-        <p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait! </p>
-        <p class="ui-li-aside"><strong>4:48</strong>PM</p>
-    </a></li>
-</ul>
+        <form>
+    <ul data-role="listview" data-inset="false" data-divider-theme="d">
+        <li data-role="list-divider">Reminder Options</li>
+        <li data-role="fieldcontain">
+            <label for="flip2">Enable Reminders:</label>
+            <select name="flip2" id="flip2" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+                
+            </select>
+        </li>
+        <li data-role="fieldcontain">
+            <label for="select-choice-2">Reminder (in advance):</label>
+                <select name="select-choice-2" id="select-choice-2"  data-mini="true">
+                <option value="standard">15 min</option>
+                <option value="rush">30 min</option>
+                <option value="express">45 min</option>
+                <option value="overnight">60 min</option>
+            </select>
+        </li>
+        <li data-role="list-divider">Status Options</li>
+        <li data-role="fieldcontain">
+            <label for="select-choice-3">Status available:</label>
+
+            <select name="select-choice-3" id="select-choice-3"  data-mini="true" >
+                <option value="standard">Initiated</option>
+                <option value="rush">Accepted</option>
+                <option value="express">Work In Progress</option>
+                <option value="overnight">Completed</option>
+            </select>
+            <div data-role="controlgroup" data-type="horizontal" data-mini="true" style="margin-top:10px;">
+    <a href="#" data-role="button" data-icon="plus" data-theme="c">Add</a>
+    <a href="#" data-role="button" data-icon="delete" data-theme="c">Delete</a>
+    
+</div>
+            
+        
+        </li>
+        
+        <li data-role="list-divider">SMS Provider Settings</li>
+        <li data-role="fieldcontain">
+            <label for="select-choice-4" class="select">Select SMS Provider:</label>
+            <select name="select-choice-4" id="select-choice-4"  data-mini="true">
+                <option value="standard">Native</option>
+                <option value="rush">Way2SMS</option>
+                <option value="express">3rd Party</option>
+            </select>
+        </li>
+        <li class="ui-body ui-body-b">
+            <fieldset class="ui-grid-a">
+                    <div class="ui-block-a"><button type="submit" data-theme="a"  data-mini="true">Save</button></div>
+                    <div class="ui-block-b"><button type="submit" data-theme="d"  data-mini="true">Cancel</button></div>
+                    
+            </fieldset>
+        </li>
+    </ul>
+</form>
     </div><!-- /content -->
 
     <div data-role="footer"  data-position="fixed">

@@ -95,31 +95,89 @@ var app = {
     	taskDiary.getTasks(app.loadTasks);
     	
     	$("#Conference").on("click", function() {
-    		YUI().use('charts', function (Y) 
-    			{ 
-    			    // Create data 
-    			    var myDataValues = [
-    			            {day:"Monday", taxes:2000}, 
-    			            {day:"Tuesday", taxes:50}, 
-    			            {day:"Wednesday", taxes:4000}, 
-    			            {day:"Thursday", taxes:200}, 
-    			            {day:"Friday", taxes:2000}
-    			    ];				
-
-    			    var pieGraph = new Y.Chart({
-    			            render:"#mychart", 
-    			            categoryKey:"day", 
-    			            seriesKeys:["taxes"], 
-    			            dataProvider:myDataValues, 
-    			            type:"pie", 
-    			            seriesCollection:[
-    			                {
-    			                    categoryKey:"day",
-    			                    valueKey:"taxes"
-    			                }
-    			            ]
-    			        });
-    			});
+    		taskDiary.getTasks(function(data) {
+    			var summary = {}, userSummary = {};
+    			for (var i = 0; i < data.length; i++) {
+    				var user = app.findNameById(data[i].contacts[0]);
+    				
+    				if (summary[data[i].currentStatus] == null)
+    					summary[data[i].currentStatus] = {status: data[i].currentStatus, count: 0};
+    				
+    				if (userSummary[user] == null)
+    					userSummary[user] = {};
+    				
+    				if (userSummary[user][data[i].currentStatus] == null)
+    					userSummary[user][data[i].currentStatus] = {};
+    				
+    				userSummary[user][data[i].currentStatus]++;
+    				summary[data[i].currentStatus].count++;
+    			}
+    			
+    			var rows = [], rows1 = [];
+    			for (var k in summary) {
+    				rows.push(summary[k]);
+    			}
+    			
+    			for (var k in userSummary) {
+    				var user = userSummary[k];
+    				var row = {user: k};
+    				for (var k1 in user) {
+    					row[k1] = user[k1];
+    				}
+    				rows1.push(row);
+    			}
+    			
+    			$('#mychart').html("");
+    			$('#mychart1').html("");
+    			
+    			
+    			
+    			YUI().use('charts', function (Y) 
+    	    			{ 
+    	    			    var pieGraph = new Y.Chart({
+    	    			            render:"#mychart", 
+    	    			            categoryKey:"status", 
+    	    			            seriesKeys:["count"], 
+    	    			            dataProvider:rows, 
+    	    			            type:"pie", 
+    	    			            seriesCollection:[
+    	    			                {
+    	    			                    categoryKey:"status",
+    	    			                    valueKey:"count"
+    	    			                }
+    	    			            ],
+    	    			            legend: {
+    	    			            	display: 'right',
+    	    			            	width: 300,
+    	                                height: 300,
+    	                                styles: {
+    	                                    hAlign: "center",
+    	                                    hSpacing: 4
+    	                                }
+    	    			            },
+    	    			            styles: {
+    	    			            	legend: { display: 'bottom' }
+    	    			            },
+    	    			            series: [{style:{colors:['#4572A7', 
+    	    			                                     '#AA4643', 
+    	    			                                     '#89A54E', 
+    	    			                                     '#80699B', 
+    	    			                                     '#3D96AE', 
+    	    			                                     '#DB843D', 
+    	    			                                     '#92A8CD', 
+    	    			                                     '#A47D7C', 
+    	    			                                     '#B5CA92']}}]
+    	    			        });
+    	    			});
+    			YUI().use('charts', function(Y) {
+        			new Y.Chart({
+                        dataProvider:rows1, 
+                        render:"#mychart1", 
+                        type:"column", 
+                        stacked:true
+                    });
+        		});
+    		});
     	});
     	
     	//window.localStorage.clear();
