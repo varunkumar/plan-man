@@ -193,7 +193,8 @@ var app = {
     	$('#tasksList').html("");
     	var str = "";
     	for (var i = 0; i < data.length; i++) {
-    		var task = "<li><a href='#taskdetails'>";
+    		var task = '<li><input type="hidden" class="taskId" value="' + data[i].id + '"/>';
+    		task += "<a class='taskItem' href='#taskdetails'>";
     		task += '<img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">';
     		task += '<h2>PM' + data[i].id + ': ' + data[i].name + '</h2>';
     		task += '<p><strong>' + app.findNameById(data[i].contacts[0]) + '</strong></p>';
@@ -205,6 +206,19 @@ var app = {
     		str += task;
     	} 
     	$('#tasksList').append(str).listview('refresh').trigger('create');
+    	$(".taskItem").on("click", function(){
+    		taskDiary.getTasks(function(data) {
+    			var task = data[0];
+    			$("#taskdetails").find("#id").html("PM"+task.id);
+    			$("#taskdetails").find("#status").html(task.currentStatus);
+    			$("#taskdetails").find("#client").html(app.findNameById(task.contacts[1]));
+    			$("#taskdetails").find("#subject").html(task.name);
+    			$("#taskdetails").find("#description").html(task.desc);
+    			$("#taskdetails").find("#assignedTo").html(app.findNameById(task.contacts[0]));
+    			$("#taskdetails").find("#dueDate").html(task.dueDate);
+    			$("#taskdetails").find("#location").html(task.location);
+    		}, $(this).parent().find(".taskId").val());
+    	});
 	},
     findContactById: function(id) {
     	var idMap = {
