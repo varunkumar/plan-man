@@ -144,7 +144,7 @@ var app = {
     	    			                {
     	    			                    categoryKey:"status",
     	    			                    valueKey:"count",
-    	    			                    series: [{style:{fill: {colors:['#4572A7', 
+    	    			                    styles:{fill: {colors:['#4572A7', 
     	    	    			                                     '#AA4643', 
     	    	    			                                     '#89A54E', 
     	    	    			                                     '#80699B', 
@@ -152,7 +152,7 @@ var app = {
     	    	    			                                     '#DB843D', 
     	    	    			                                     '#92A8CD', 
     	    	    			                                     '#A47D7C', 
-    	    	    			                                     '#B5CA92']}}}]
+    	    	    			                                     '#B5CA92']}}
     	    			                }
     	    			            ],
     	    			            legend: {
@@ -175,7 +175,19 @@ var app = {
                         dataProvider:rows1, 
                         render:"#mychart1", 
                         type:"column",
-                        categoryKey: 'user'
+                        categoryKey: 'user',
+                        seriesCollection: [
+                                           {
+       	    			                    styles:{fill: {colors:['#4572A7', 
+       	    	    			                                     '#AA4643', 
+       	    	    			                                     '#89A54E', 
+       	    	    			                                     '#80699B', 
+       	    	    			                                     '#3D96AE', 
+       	    	    			                                     '#DB843D', 
+       	    	    			                                     '#92A8CD', 
+       	    	    			                                     '#A47D7C', 
+       	    	    			                                     '#B5CA92']}}
+                                           }]
                     });
         		});
     		});
@@ -194,8 +206,15 @@ var app = {
     	var str = "";
     	for (var i = 0; i < data.length; i++) {
     		var task = '<li><input type="hidden" class="taskId" value="' + data[i].id + '"/>';
+    		var iconMap = {
+    				"completed": "awaitingacceptance",
+    				"in progress": "active",
+    				"assigned": "assigned",
+    				"accepted": "active",
+    				"rejected": "problem"
+    		};
     		task += "<a class='taskItem' href='#taskdetails'>";
-    		task += '<img src="content/statusicons/active.png" alt="France" class="ui-li-icon ui-corner-none">';
+    		task += '<img src="content/statusicons/' + iconMap[data[i].currentStatus.toLowerCase()] + '.png" alt="France" class="ui-li-icon ui-corner-none">';
     		task += '<h2>PM' + data[i].id + ': ' + data[i].name + '</h2>';
     		task += '<p><strong>' + app.findNameById(data[i].contacts[0]) + '</strong></p>';
     		task += '<p>' + data[i].location + '</p>';
