@@ -51,8 +51,8 @@ TaskDiary.prototype.initDBData = function() {
 	t.executeSql("insert into task_contacts(task_id, contact_id) values(1, 2848)");
 	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(1, 'Assigned', '2013-07-14 01:00:00', '2013-07-14 01:05:00')");
 	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(1, 'Accepted', '2013-07-14 01:05:00', '2013-07-14 01:10:00')");
-	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(1, 'InProgress', '2013-07-14 01:10:00', '2013-07-14 01:15:00')");
-	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(1, 'Completed', '2013-07-14 01:15:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(1, 'InProgress', '2013-07-14 01:55:00', '2013-07-14 01:15:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(1, 'Completed', '2013-07-14 02:15:00')");
 
 	//Task 2
 	t.executeSql("insert into task(name, description, dueDate, location) values('Electrical problem at Westin', 'Backup generator is not running', '2013-07-14 02:30:00', 'Westin (Mindspace), Madhapur')");
@@ -60,7 +60,7 @@ TaskDiary.prototype.initDBData = function() {
 	t.executeSql("insert into task_contacts(task_id, contact_id) values(2, 2848)");
 	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(2, 'Assigned', '2013-07-14 01:30:00', '2013-07-14 01:35:00')");
 	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(2, 'Accepted', '2013-07-14 01:35:00', '2013-07-14 01:40:00')");
-	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(2, 'InProgress', '2013-07-14 01:40:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(2, 'InProgress', '2013-07-14 02:40:00')");
 
 	//Task 3
 	t.executeSql("insert into task(name, description, dueDate, location) values('HVAC issue at Westin', 'High noise reported from HVAC system', '2013-07-14 02:15:00', 'Westin (Mindspace), Madhapur')");
