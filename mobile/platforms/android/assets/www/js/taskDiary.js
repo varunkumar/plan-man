@@ -60,11 +60,11 @@ TaskDiary.prototype.initDBData = function() {
 	t.executeSql("insert into task_contacts(task_id, contact_id) values(2, 2848)");
 	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(2, 'Assigned', '2013-07-14 01:30:00', '2013-07-14 01:35:00')");
 	t.executeSql("insert into task_lifecycle(task_id, status, validity_start, validity_end) values(2, 'Accepted', '2013-07-14 01:35:00', '2013-07-14 01:40:00')");
-	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(2, 'In Progress', '2013-07-14 01:40:00')");
+	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(2, 'InProgress', '2013-07-14 01:40:00')");
 
 	//Task 3
-	t.executeSql("insert into task(name, description, dueDate, location) values('HVAC issue at Westin', 'High noise reported from HVAC system', '2013-07-14 06:15:00', 'Westin (Mindspace), Madhapur')");
-	t.executeSql("insert into task_contacts(task_id, contact_id) values(3, 4104)");
+	t.executeSql("insert into task(name, description, dueDate, location) values('HVAC issue at Westin', 'High noise reported from HVAC system', '2013-07-14 02:15:00', 'Westin (Mindspace), Madhapur')");
+	t.executeSql("insert into task_contacts(task_id, contact_id) values(3, 2406)");
 	t.executeSql("insert into task_contacts(task_id, contact_id) values(3, 2848)");
 	t.executeSql("insert into task_lifecycle(task_id, status, validity_start) values(3, 'Assigned', '2013-07-14 01:15:00')");
 
