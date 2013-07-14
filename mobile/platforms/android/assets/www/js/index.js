@@ -107,7 +107,7 @@ var app = {
     					userSummary[user] = {};
     				
     				if (userSummary[user][data[i].currentStatus] == null)
-    					userSummary[user][data[i].currentStatus] = {};
+    					userSummary[user][data[i].currentStatus] = 0;
     				
     				userSummary[user][data[i].currentStatus]++;
     				summary[data[i].currentStatus].count++;
@@ -130,7 +130,7 @@ var app = {
     			$('#mychart').html("");
     			$('#mychart1').html("");
     			
-    			
+    			console.log(JSON.stringify(rows1));
     			
     			YUI().use('charts', function (Y) 
     	    			{ 
@@ -173,8 +173,8 @@ var app = {
         			new Y.Chart({
                         dataProvider:rows1, 
                         render:"#mychart1", 
-                        type:"column", 
-                        stacked:true
+                        type:"column",
+                        categoryKey: 'user'
                     });
         		});
     		});
