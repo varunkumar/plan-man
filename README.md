@@ -30,7 +30,7 @@ Contributors
 - Raghuram Doraisamy (@[raghuramd](http://twitter.com/raghuramd))
 - Varunkumar Nagarajan (@[varunkumar](http://twitter.com/varunkumar))
 
-The splash screen image was inspired by the illustration made by '[Yes please studio design](http://www.yespleasestudio.co.za/portfolio/superhero-character-illustration/)'
+The splash screen image was inspired by the illustration made by '[Yes please studio design]'
 
 License
 -------
