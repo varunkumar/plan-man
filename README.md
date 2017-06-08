@@ -14,7 +14,7 @@ The application reads these feedback and updates the system. It also sends the t
 
 Scalable and collaborative in truest sense, PlanMan can be used in a wide spectrum of use cases from running a small business, to planning a weekend trip or arranging a birthday party.
 
-PlanMan won the [grand pize](http://developer.yahoo.com/blogs/ydn/hack-india-hyderabad-wrap-133447729.html) at Yahoo! Hack 2013, Hyderabad India. 
+**PlanMan won the [grand pize](http://developer.yahoo.com/blogs/ydn/hack-india-hyderabad-wrap-133447729.html) at Yahoo! Hack 2013, Hyderabad India.**
 
 Tech Stack
 ----------
